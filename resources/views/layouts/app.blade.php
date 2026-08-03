@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Wisata Bromo - Beranda')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    @stack('styles')
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-dark navbar-expand-lg custom-navbar">
+        <div class="container navbar-inner">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
+                <img src="{{ asset('images/logo.jpg') }}" alt="Logo Wisata Bromo"
+                     style="height: 36px; width: 36px; object-fit: cover; border-radius: 50%; border: 2px solid #e8945a;">
+                Wisata Bromo
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-house-door"></i> Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('destinasi') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-geo-alt"></i> Destinasi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('tentang') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-info-circle"></i> Tentang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('kontak') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-envelope"></i> Kontak
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    @yield('content')
+
+    <footer class="text-white pt-5 pb-4" style="background-color: #3f6ea1;">
+    <div class="container">
+        <div class="row gy-4">
+
+            <!-- Kolom 1: Brand -->
+            <div class="col-lg-4 col-md-6">
+                <h5 class="fw-bold mb-3">Wisata Bromo</h5>
+                <p class="small" style="color: #d9e4f0;">
+                    Temukan pesona sunrise dan berbagai destinasi alam Gunung Bromo bersama kami.
+                </p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="##" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Kolom 2: Menu -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="fw-bold mb-3">Menu</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{{ route('beranda') }}" class="text-white text-decoration-none">Beranda</a></li>
+                    <li class="mb-2"><a href="{{ route('destinasi') }}" class="text-white text-decoration-none">Destinasi</a></li>
+                    <li class="mb-2"><a href="{{ route('tentang') }}" class="text-white text-decoration-none">Tentang</a></li>
+                    <li class="mb-2"><a href="{{ route('kontak') }}" class="text-white text-decoration-none">Kontak</a></li>
+                </ul>
+            </div>
+
+            <!-- Kolom 3: Kontak -->
+            <div class="col-lg-3 col-md-6">
+                <h6 class="fw-bold mb-3">Kontak Kami</h6>
+                <p class="small mb-2" style="color: #d9e4f0;">
+                    <i class="bi bi-geo-alt-fill me-2"></i>Probolinggo, Jawa Timur
+                </p>
+                <p class="small mb-2" style="color: #d9e4f0;">
+                    <i class="bi bi-telephone-fill me-2"></i>0812-3456-7890
+                </p>
+                <p class="small mb-2" style="color: #d9e4f0;">
+                    <i class="bi bi-envelope-fill me-2"></i>info@wisatabromo.com
+                </p>
+            </div>
+
+            <!-- Kolom 4: Newsletter -->
+            <div class="col-lg-3 col-md-6">
+                <h6 class="fw-bold mb-3">Info Wisata</h6>
+                <p class="small" style="color: #d9e4f0;">Dapatkan info promo & tips liburan ke Bromo.</p>
+                <div class="input-group mt-2">
+                    <input type="email" class="form-control form-control-sm" placeholder="Email kamu">
+                    <button class="btn btn-sm" style="background-color: #d67f42; color: white;">Kirim</button>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+
+        <div class="text-center small" style="color: #d9e4f0;">
+            &copy; {{ date('Y') }} Wisata Bromo. Semua hak dilindungi.
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.custom-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const destinasi = document.querySelector(".destinasi");
+
+    if (destinasi) {
+      const observerDestinasi = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.15 });
+
+      observerDestinasi.observe(destinasi);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const targets = document.querySelectorAll(".tentang-section");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    targets.forEach((el) => observer.observe(el));
+  });
+</script>
+
+    @stack('scripts')
+
+</body>
+</html>

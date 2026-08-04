@@ -14,6 +14,11 @@
 </head>
 <body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    @stack('scripts')
+
+</body>
+</html>
   <header>
     <nav class="navbar navbar-dark navbar-expand-lg custom-navbar">
         <div class="container navbar-inner">
@@ -54,6 +59,11 @@
                             <i class="bi bi-envelope"></i> Kontak
                         </a>
                     </li>
+                    <li class="nav-item ms-lg-auto d-flex align-items-center">
+            <a href="{{ route('user.create') }}" class="nav-icon-circle" title="Tambah User">
+                <i class="bi bi-person-plus-fill"></i>
+            </a>
+        </li>
                 </ul>
             </div>
         </div>

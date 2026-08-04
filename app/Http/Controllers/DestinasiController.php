@@ -8,10 +8,18 @@ use Illuminate\Http\Request;
 class DestinasiController extends Controller
 {
 
-public function index()
+
+public function index(Request $request)
 {
-    $destinasiList = Destinasi::latest()->get();
-    return view('destinasi', compact('destinasiList'));
+    $keyword = $request->input('cari');
+ 
+    $destinasiList = Destinasi::when($keyword, function ($query) use ($keyword) {
+            $query->where('nama', 'like', '%' . $keyword . '%');
+        })
+        ->latest()
+        ->paginate(2);
+ 
+    return view('destinasi', compact('destinasiList', 'keyword'));
 }
 
 

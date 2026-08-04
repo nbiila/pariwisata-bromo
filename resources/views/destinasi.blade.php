@@ -16,6 +16,17 @@
             <p class="fw-bold" style="color: #cdd7e2;">Jelajahi beragam keindahan di Probolinggo, Jawa Timur.</p>
         </div>
 
+<form action="{{ route('destinasi') }}" method="GET" class="mb-4">
+    <div class="input-group search-bromo">
+        <span class="input-group-text search-icon">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text" name="cari" class="form-control"
+               placeholder="Cari nama destinasi..." value="{{ $keyword ?? '' }}">
+        <button type="submit" class="btn btn-search">Cari</button>
+    </div>
+</form>
+        
         <div class="row g-4">
 
             @forelse ($destinasiList as $item)
@@ -48,7 +59,12 @@
                     <p class="text-white">Belum tersedia Destinasi.</p>
                 </div>
             @endforelse
+            <div class="d-flex justify-content-center mt-4">
+    {{ $destinasiList->appends(['cari' => $keyword])->links('pagination::bootstrap-5') }}
+            </div>
+
         </div>
     </div>
 </section>
+
 @endsection

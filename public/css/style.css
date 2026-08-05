@@ -1588,3 +1588,59 @@ header {
 .container.my-5 .breadcrumb-simple span:not(:last-child)::after {
   color: #A9B2BC !important;
 }
+
+/* ===== ATRAKSI: FILTER PILL PER DESTINASI ===== */
+.destinasi-filter{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.destinasi-pill{
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid #E2E5E9;
+  color: #6B7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.destinasi-pill:hover{
+  border-color: var(--bromo-amber);
+  color: var(--bromo-amber-dark);
+}
+.destinasi-pill.active{
+  background: linear-gradient(135deg, var(--bromo-amber) 0%, var(--bromo-amber-dark) 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ===== ATRAKSI: CARD ===== */
+.atraksi-card{
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(31, 42, 55, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.atraksi-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(31, 42, 55, 0.12);
+}
+.atraksi-kategori{
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.atraksi-kategori.alam{ background: rgba(25,135,84,0.12); color: #198754; }
+.atraksi-kategori.budaya{ background: rgba(220,53,69,0.1); color: #DC3545; }
+.atraksi-kategori.kuliner{ background: rgba(224,123,57,0.12); color: var(--bromo-amber-dark); }
+
+.atraksi-nama{ font-weight: 700; color: var(--bromo-navy); font-size: 1.05rem; margin: 0.6rem 0 0.4rem; }
+.atraksi-deskripsi{ color: #6B7280; font-size: 0.88rem; line-height: 1.55; margin-bottom: 0.9rem; }
+.atraksi-destinasi{ font-size: 0.78rem; color: var(--bromo-amber-dark); font-weight: 600; display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.5rem; }
+.atraksi-footer{ display: flex; justify-content: space-between; align-items: center; padding-top: 0.9rem; border-top: 1px solid #EEF0F2; }
+.atraksi-harga{ font-weight: 700; color: var(--bromo-navy); }

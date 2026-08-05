@@ -220,15 +220,16 @@ $fasilitas = match ($destinasi->id) {
                         <i class="bi bi-cart"></i> Pesan Paket Wisata
                     </a>
 
-                    <form action="{{ route('destinasi.destroy', $destinasi->id) }}" method="POST"
-                          onsubmit="return confirm('Yakin ingin menghapus data ini?')"
-                          class="mt-2">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
-                            <i class="bi bi-trash"></i> Hapus Destinasi
-                        </button>
-                    </form>
+  <form action="{{ route('destinasi.destroy', $destinasi->id) }}" method="POST"
+      class="form-hapus"
+      data-nama="{{ $destinasi->nama }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-outline-cancel w-100">
+        <i class="bi bi-trash me-1"></i> Hapus Destinasi
+    </button>
+</form>
+
                 </div>
 
                 <div class="detail-panel detail-panel--map">

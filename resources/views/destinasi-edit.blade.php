@@ -120,6 +120,17 @@
                             >
                         </div>
 
+                         <div class="mb-4">
+                            <label for="harga_tiket" class="form-label">Harga Tiket (Rp)</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="harga_tiket"
+                                name="harga_tiket"
+                                value="{{ old('harga_tiket', $destinasi->harga_tiket) }}"
+                            >
+                        </div>
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
                                 Simpan Perubahan

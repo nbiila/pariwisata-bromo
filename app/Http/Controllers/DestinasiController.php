@@ -68,7 +68,10 @@ class DestinasiController extends Controller
             'jam_buka'   => 'required',
             'jam_tutup'  => 'required',
             'lokasi'     => 'required|string|max:255',
+            'harga_tiket' => 'nullable|numeric|min:0',
         ]);
+
+
 
         $destinasi->update($validated);
 

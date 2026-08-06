@@ -58,14 +58,6 @@ $tips = match ($destinasi->id) {
     default => [],
 };
 
-$hargaTiket = match ($destinasi->id) {
-    1 => 'Rp 29.000/orang (hari kerja)<br>Rp 34.000/orang (hari libur)',
-    2 => 'Rp 20.000-Rp 30.000 per orang',
-    3 => 'Termasuk dalam tiket masuk kawasan TN Bromo Tengger Semeru',
-    4 => 'Rp55.000 untuk wisatawan domestik, Rp110.000 untuk wisatawan mancanegara',
-    default => '',
-};
-
 $mapBbox = match ($destinasi->id) {
     1 => '112.9130,-7.9480,112.9930,-7.8680',
     2 => '112.8847,-8.0001,112.9647,-7.9201',
@@ -205,7 +197,10 @@ $fasilitas = match ($destinasi->id) {
 
                     <div class="detail-panel__row">
                         <p class="detail-panel__label">Harga Tiket</p>
-                        <p class="detail-panel__value">{!! $hargaTiket !!}</p>
+                       <p>
+    {{ $destinasi->harga_tiket == 0 ? 'Gratis' : 'Rp ' . number_format($destinasi->harga_tiket, 0, ',', '.') }}
+</p>
+
                     </div>
                     <div class="detail-panel__row">
                         <p class="detail-panel__label">Jam Buka</p>

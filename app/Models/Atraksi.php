@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Atraksi extends Model
 {
     protected $fillable = [
+        'destinasi_id',
         'nama',
         'deskripsi',
         'kategori',
@@ -14,5 +15,10 @@ class Atraksi extends Model
         'gambar',
     ];
 
-   
+   public function destinasi()
+{
+    return $this->belongsTo(Destinasi::class);
 }
+
+}
+

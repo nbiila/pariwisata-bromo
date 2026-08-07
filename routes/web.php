@@ -44,6 +44,8 @@ Route::get('/atraksi/{id}/edit', [AtraksiController::class, 'edit'])->name('atra
 Route::put('/atraksi/{id}', [AtraksiController::class, 'update'])->name('atraksi.update');
 Route::delete('/atraksi/{id}', [AtraksiController::class, 'destroy'])->name('atraksi.destroy');
 
+Route::get('/atraksi/{atraksi}', [AtraksiController::class, 'show'])->name('atraksi.show');
+
 // Route {id} generik selalu PALING BAWAH:
 Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.detail');
 

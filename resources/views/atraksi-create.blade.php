@@ -26,6 +26,15 @@
                 <div class="card-body p-4">
                     <form action="{{ route('atraksi.store') }}" method="POST">
                         @csrf
+                <select name="destinasi_id" class="form-select @error('destinasi_id') is-invalid @enderror">
+                     <option value="" selected disabled>-- Pilih Destinasi --</option>
+                          @foreach ($destinasiList as $destinasi)
+                             <option value="{{ $destinasi->id }}"
+                             {{ old('destinasi_id') == $destinasi->id ? 'selected' : '' }}>
+                           {{ $destinasi->nama }}
+                          </option>
+                            @endforeach
+                </select>
 
                         <div class="form-floating mb-3">
                             <input type="text" name="nama" id="nama"

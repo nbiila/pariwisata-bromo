@@ -8,6 +8,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('destinasi') }}">Destinasi</a></li>
             <li class="breadcrumb-item active" aria-current="page">Atraksi</li>
         </ol>
     </nav>

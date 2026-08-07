@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Destinasi;
 use Illuminate\Http\Request;
+use App\Models\Atraksi;
 
 class DestinasiController extends Controller
 {
@@ -22,7 +22,8 @@ class DestinasiController extends Controller
 
     public function show($id)
     {
-        $destinasi = Destinasi::findOrFail($id);
+        // $destinasi = Destinasi::findOrFail($id);
+        $destinasi = Destinasi::with('atraksi')->findOrFail($id);
 
         return view('destinasi-detail', [
             'destinasi' => $destinasi,
@@ -86,4 +87,9 @@ class DestinasiController extends Controller
         return redirect()->route('destinasi')
             ->with('success', 'Destinasi berhasil dihapus!');
     }
+public function destinasi()
+{
+    return $this->belongsTo(Destinasi::class);
+}
+
 }

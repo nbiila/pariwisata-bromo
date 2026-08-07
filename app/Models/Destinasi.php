@@ -11,8 +11,12 @@ class Destinasi extends Model
      protected $table = 'destinasi';
 
      protected $fillable = [
-    'nama', 'deskripsi', 'gambar', 'jam_buka', 'jam_tutup', 'lokasi', 'harga_tiket',
+    'destinasi_id', 'nama', 'deskripsi', 'gambar', 'jam_buka', 'jam_tutup', 'lokasi', 'harga_tiket',
 ];
 
+public function atraksi()
+{
+    return $this->hasMany(Atraksi::class);
+}
 
 }

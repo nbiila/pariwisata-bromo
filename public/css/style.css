@@ -1644,3 +1644,74 @@ header {
 .atraksi-destinasi{ font-size: 0.78rem; color: var(--bromo-amber-dark); font-weight: 600; display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.5rem; }
 .atraksi-footer{ display: flex; justify-content: space-between; align-items: center; padding-top: 0.9rem; border-top: 1px solid #EEF0F2; }
 .atraksi-harga{ font-weight: 700; color: var(--bromo-navy); }
+
+.atraksi-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.atraksi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.atraksi-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+}
+
+.atraksi-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.atraksi-card:hover .atraksi-img {
+    transform: scale(1.08);
+}
+
+.atraksi-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1f2937;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.atraksi-body {
+    padding: 14px 16px 18px;
+}
+
+.atraksi-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.atraksi-desc {
+    font-size: 0.82rem;
+    color: #6b7280;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.atraksi-card { transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.atraksi-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+.atraksi-link { display: block; cursor: pointer; }
+.atraksi-link:hover .card-title { color: #2f7d32; text-decoration: underline; }

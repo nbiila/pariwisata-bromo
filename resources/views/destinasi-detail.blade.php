@@ -8,7 +8,6 @@ $statusBuka = ($jamSekarang >= $destinasi->jam_buka && $jamSekarang < $destinasi
     ? 'Wisata Buka'
     : 'Wisata Tutup';
 
-// Data tambahan yang belum ada kolomnya di database, ditulis manual per id
 $aktivitas = match ($destinasi->id) {
     1 => [
         'Berburu momen matahari terbit dari titik pandang bukit',
@@ -224,8 +223,7 @@ $fasilitas = match ($destinasi->id) {
         <i class="bi bi-trash me-1"></i> Hapus Destinasi
     </button>
 </form>
-
-                </div>
+</div>
 
                 <div class="detail-panel detail-panel--map">
                     <p class="detail-panel__title"><i class="bi bi-geo-alt"></i> Peta Lokasi</p>
@@ -248,4 +246,43 @@ $fasilitas = match ($destinasi->id) {
     </div>
 </div>
 
+<div class="container">
+    <div class="detail-atraksi mt-5">
+        <h2 class="section-title mb-4">
+            <i class="bi bi-geo-alt-fill text-primary"></i> Atraksi di Destinasi Ini
+        </h2>
+
+        <div class="row g-4">
+            @forelse ($destinasi->atraksi as $atraksi)
+                <div class="col-md-4">
+                    <a href="{{ route('atraksi.show', $atraksi->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
+                        <div class="atraksi-card h-100">
+                            <div class="atraksi-img-wrap">
+                                <img src="{{ asset('images/' . $atraksi->gambar) }}" 
+                                     alt="{{ $atraksi->nama }}" 
+                                     class="atraksi-img">
+                                <span class="atraksi-badge">{{ $atraksi->kategori }}</span>
+                            </div>
+                            <div class="atraksi-body">
+                                <h6 class="atraksi-title">{{ $atraksi->nama }}</h6>
+                                @if($atraksi->deskripsi)
+                                    <p class="atraksi-desc">{{ Str::limit($atraksi->deskripsi, 70) }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @empty
+                <div class="col-12">
+                    <p class="text-muted">Belum ada atraksi untuk destinasi ini.</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/atraksi.css') }}">
+@endpush

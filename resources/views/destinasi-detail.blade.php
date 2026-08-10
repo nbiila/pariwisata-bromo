@@ -129,7 +129,7 @@ $fasilitas = match ($destinasi->id) {
 
 @section('content')
 
-<section class="detail-hero" style="background-image: url('{{ asset('images/' . $destinasi->gambar) }}');">
+<section class="detail-hero" style="background-image: url('{{ asset('storage/' . $destinasi->gambar) }}');">
     <div class="container detail-hero__inner">
         <p class="detail-hero__breadcrumb">
             <a href="{{ route('beranda') }}">Beranda</a> /
@@ -258,7 +258,7 @@ $fasilitas = match ($destinasi->id) {
                     <a href="{{ route('atraksi.show', $atraksi->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
                         <div class="atraksi-card h-100">
                             <div class="atraksi-img-wrap">
-                                <img src="{{ asset('images/' . $atraksi->gambar) }}" 
+                                <img src="{{ asset('storage/' . $atraksi->gambar) }}" 
                                      alt="{{ $atraksi->nama }}" 
                                      class="atraksi-img">
                                 <span class="atraksi-badge">{{ $atraksi->kategori }}</span>
@@ -281,6 +281,37 @@ $fasilitas = match ($destinasi->id) {
     </div>
 </div>
 
+<div class="review-list-header">
+    <div class="eyebrow">Kata Mereka</div>
+    <h2>Ulasan Pengunjung</h2>
+</div>
+
+<div class="review-grid">
+    @forelse ($destinasi->ulasan as $ulasan)
+        <div class="review-item">
+            <div class="review-item-top">
+                <div class="review-item-avatar">
+                    {{ strtoupper(substr($ulasan->user->name, 0, 1)) }}
+                </div>
+                <div class="review-item-meta">
+                    <div class="review-item-user">{{ $ulasan->user->name }}</div>
+                    <div class="review-item-stars">
+                        {{ str_repeat('★', $ulasan->rating) }}{{ str_repeat('☆', 5 - $ulasan->rating) }}
+                    </div>
+                </div>
+            </div>
+            <p class="review-item-komentar">{{ $ulasan->komentar }}</p>
+        </div>
+    @empty
+        <div class="review-empty">
+            Belum ada ulasan untuk destinasi ini.
+        </div>
+    @endforelse
+</div>
+
+<a href="{{ route('ulasan.create', $destinasi->id) }}" class="btn btn-kirim mt-3">
+    Tulis Ulasan
+</a>
 @endsection
 
 @push('styles')

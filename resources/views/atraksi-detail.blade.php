@@ -126,7 +126,7 @@ $perlengkapan = match ($atraksi->id) {
 
 @section('content')
 
-<section class="detail-hero" style="background-image: url('{{ asset('images/' . $atraksi->gambar) }}');">
+<section class="detail-hero" style="background-image: url('{{ asset('storage/' . $atraksi->gambar) }}');">
     <div class="container detail-hero__inner">
         <p class="detail-hero__breadcrumb">
             <a href="{{ route('beranda') }}">Beranda</a> /
@@ -225,7 +225,7 @@ $perlengkapan = match ($atraksi->id) {
                     <a href="{{ route('atraksi.show', $item->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
                         <div class="atraksi-card h-100">
                             <div class="atraksi-img-wrap">
-                                <img src="{{ asset('images/' . $item->gambar) }}" alt="{{ $item->nama }}" class="atraksi-img">
+                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" class="atraksi-img">
                                 <span class="atraksi-badge">{{ $item->kategori }}</span>
                             </div>
                             <div class="atraksi-body">

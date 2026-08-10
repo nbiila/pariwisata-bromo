@@ -5,6 +5,7 @@ use App\Http\Controllers\DestinasiController;
 use App\Models\Destinasi;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AtraksiController;
+use App\Http\Controllers\UlasanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::delete('/atraksi/{id}', [AtraksiController::class, 'destroy'])->name('atr
 
 Route::get('/atraksi/{atraksi}', [AtraksiController::class, 'show'])->name('atraksi.show');
 
+Route::get('/destinasi/{id}/ulasan/create', [UlasanController::class, 'create'])->name('ulasan.create');
+Route::post('/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+
+
 // Route {id} generik selalu PALING BAWAH:
 Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.detail');
 
@@ -57,3 +62,4 @@ Route::get('/tentang', function () {
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
+

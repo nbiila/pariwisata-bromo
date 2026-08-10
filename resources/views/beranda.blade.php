@@ -20,9 +20,7 @@ if ($jamsekarang < 10) {
 
 <!-- HERO -->
 <section class="hero-section d-flex align-items-center text-center text-white">
-    <video autoplay muted loop playsinline poster="{{ asset('images/hero-bromo.jpg') }}" class="hero-video">
-        <source src="{{ asset('videos/bromo.mp4') }}" type="video/mp4">
-    </video>
+    <img src="{{ asset('images/bromo2.avif') }}" class="hero-video" alt="Gunung Bromo">
 
     <div class="hero-overlay w-100">
         <div class="container">
@@ -96,7 +94,7 @@ if ($jamsekarang < 10) {
                 : 'Wisata Tutup';
             ?>
             <div class="kartu">
-                <img src="{{ asset('images/' . $item->gambar) }}" alt="{{ $item->nama }}">
+                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}">
                 <h3>{{ $item->nama }}</h3>
                 <p>{{ $item->deskripsi }}</p>
                 <p>

@@ -40,7 +40,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow-sm destinasi-card">
                         <div class="position-relative">
-                            <img src="{{ asset('images/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 220px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 220px; object-fit: cover;">
                             <span class="badge position-absolute top-0 end-0 m-2 {{ $status == 'Wisata Buka' ? 'bg-success' : 'bg-secondary' }}">
                                 {{ $status }}
                             </span>

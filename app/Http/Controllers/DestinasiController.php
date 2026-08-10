@@ -23,7 +23,7 @@ class DestinasiController extends Controller
     public function show($id)
     {
         // $destinasi = Destinasi::findOrFail($id);
-        $destinasi = Destinasi::with('atraksi')->findOrFail($id);
+        $destinasi = Destinasi::with(['atraksi', 'ulasan.user'])->findOrFail($id);
 
         return view('destinasi-detail', [
             'destinasi' => $destinasi,
@@ -40,12 +40,14 @@ class DestinasiController extends Controller
         $validated = $request->validate([
             'nama'       => 'required|string|max:255',
             'deskripsi'  => 'required|string',
-            'gambar'     => 'nullable|string|max:255',
+            'gambar'     => 'nullable|image|max:2048',
             'jam_buka'   => 'required',
             'jam_tutup'  => 'required',
             'lokasi'     => 'required|string|max:255',
         ]);
 
+        $validated['gambar'] = $request->file('gambar')->store('destinasi', 'public');
+         Destinasi::create($validated);
         $destinasi = Destinasi::create($validated);
 
         return redirect()->route('destinasi.detail', $destinasi->id)
@@ -65,16 +67,23 @@ class DestinasiController extends Controller
         $validated = $request->validate([
             'nama'       => 'required|string|max:255',
             'deskripsi'  => 'required|string',
-            'gambar'     => 'nullable|string|max:255',
+            'gambar'     => 'nullable|image|max:2048',
             'jam_buka'   => 'required',
             'jam_tutup'  => 'required',
             'lokasi'     => 'required|string|max:255',
             'harga_tiket' => 'nullable|numeric|min:0',
         ]);
 
+        if ($request->hasFile('gambar')) {
+         $validated['gambar'] = $request->file('gambar')->store('destinasi', 'public');
+}       else {
+    unset($validated['gambar']);
+}
+ 
+$destinasi->update($validated);
 
 
-        $destinasi->update($validated);
+        // $destinasi->update($validated);
 
         return redirect()->route('destinasi.detail', $destinasi->id)
             ->with('success', 'Destinasi berhasil diperbarui!');

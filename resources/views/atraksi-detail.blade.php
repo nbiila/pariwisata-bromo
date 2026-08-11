@@ -130,7 +130,7 @@ $perlengkapan = match ($atraksi->id) {
     <div class="container detail-hero__inner">
         <p class="detail-hero__breadcrumb">
             <a href="{{ route('beranda') }}">Beranda</a> /
-            <a href="{{ route('atraksi') }}">Atraksi</a> /
+            <a href="{{ route('destinasi.detail', $atraksi->destinasi_id) }}">{{ $atraksi->destinasi->nama }}</a> /
             {{ $atraksi->nama }}
         </p>
         <span class="badge detail-hero__badge bg-secondary">{{ $atraksi->kategori }}</span>
@@ -202,9 +202,15 @@ $perlengkapan = match ($atraksi->id) {
                         <a href="{{ route('atraksi') }}" class="btn btn-outline-cancel flex-fill">
                             <i class="bi bi-arrow-left me-1"></i> Kembali
                         </a>
-                        {{-- <a href="{{ route('atraksi.edit', $atraksi->id) }}" class="btn btn-bromo flex-fill">
-                            <i class="bi bi-pencil-square me-1"></i> Edit
-                        </a> --}}
+                        <form action="{{ route('atraksi.destroy', $atraksi->id) }}" method="POST"
+                                 class="form-hapus"
+                                data-nama="{{ $atraksi->nama }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-cancel w-100">
+                                 <i class="bi bi-trash me-1"></i> Hapus Atraksi
+                                </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -219,26 +225,30 @@ $perlengkapan = match ($atraksi->id) {
         <h2 class="section-title mb-4">
             <i class="bi bi-compass text-primary"></i> Atraksi Lainnya di Destinasi Ini
         </h2>
-        <div class="row g-4">
-            @foreach ($relatedAtraksi as $item)
-                <div class="col-md-4">
-                    <a href="{{ route('atraksi.show', $item->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
-                        <div class="atraksi-card h-100">
-                            <div class="atraksi-img-wrap">
-                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" class="atraksi-img">
-                                <span class="atraksi-badge">{{ $item->kategori }}</span>
-                            </div>
-                            <div class="atraksi-body">
-                                <h6 class="atraksi-title">{{ $item->nama }}</h6>
-                                @if($item->deskripsi)
-                                    <p class="atraksi-desc">{{ Str::limit($item->deskripsi, 70) }}</p>
-                                @endif
-                            </div>
-                        </div>
-                    </a>
+      <div class="row g-4">
+    @forelse ($relatedAtraksi as $item)
+        <div class="col-md-4">
+            <a href="{{ route('atraksi.show', $item->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
+                <div class="atraksi-card h-100">
+                    <div class="atraksi-img-wrap">
+                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" class="atraksi-img">
+                        <span class="atraksi-badge">{{ $item->kategori }}</span>
+                    </div>
+                    <div class="atraksi-body">
+                        <h6 class="atraksi-title">{{ $item->nama }}</h6>
+                        @if($item->deskripsi)
+                            <p class="atraksi-desc">{{ Str::limit($item->deskripsi, 70) }}</p>
+                        @endif
+                    </div>
                 </div>
-            @endforeach
+            </a>
         </div>
+    @empty
+        <div class="col-12 text-center">
+            <p class="text-muted">Belum ada atraksi terkait.</p>
+        </div>
+    @endforelse
+</div>
     </div>
 </div>
 @endif

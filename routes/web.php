@@ -6,6 +6,8 @@ use App\Models\Destinasi;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AtraksiController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,7 @@ Route::get('/destinasi/create', [DestinasiController::class, 'create'])->name('d
 Route::post('/destinasi', [DestinasiController::class, 'store'])->name('destinasi.store');
 Route::get('/destinasi/{id}/edit', [DestinasiController::class, 'edit'])->name('destinasi.edit');
 Route::put('/destinasi/{id}', [DestinasiController::class, 'update'])->name('destinasi.update');
+Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.detail');
 Route::delete('/destinasi/{id}', [DestinasiController::class, 'destroy'])->name('destinasi.destroy');
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
@@ -47,8 +50,19 @@ Route::delete('/atraksi/{id}', [AtraksiController::class, 'destroy'])->name('atr
 
 Route::get('/atraksi/{atraksi}', [AtraksiController::class, 'show'])->name('atraksi.show');
 
-Route::get('/destinasi/{id}/ulasan/create', [UlasanController::class, 'create'])->name('ulasan.create');
-Route::post('/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+Route::middleware('auth')->group(function () {
+    Route::get('/destinasi/{id}/ulasan/create', [UlasanController::class, 'create'])->name('ulasan.create');
+    Route::post('/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+
+    Route::get('/profil', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::put('/profil', [ProfilController::class, 'update'])->name('profil.update');
+});
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route {id} generik selalu PALING BAWAH:

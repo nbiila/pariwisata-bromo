@@ -2025,14 +2025,15 @@ header {
 }
 
 .review-item-komentar {
-    color: #475569;
-    line-height: 1.55;
-    font-size: 14px;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  color: #475569;
+  line-height: 1.55;
+  font-size: 14px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .review-empty {
@@ -2042,3 +2043,155 @@ header {
     color: #94a3b8;
 }
 
+.auth-wrapper { min-height: 80vh; }
+.auth-card {
+    max-width: 900px;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+}
+.auth-side {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+.auth-side-overlay {
+    background: linear-gradient(0deg, rgba(10,36,114,0.85), rgba(10,36,114,0.1));
+    width: 100%;
+    padding: 2rem;
+}
+.btn-auth {
+    background-color: #e8945a;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.65rem 0;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+.btn-auth:hover { background-color: #d97f3f; color: #fff; }
+.auth-link { color: #e8945a; font-weight: 600; text-decoration: none; }
+.auth-link:hover { text-decoration: underline; }
+.input-group-text { background-color: #f8f9fa; color: #0a2472; }
+
+.auth-wrapper { min-height: 80vh; }
+.auth-card {
+    max-width: 900px;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+}
+.auth-side {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+.auth-side-overlay {
+    background: linear-gradient(0deg, rgba(10,36,114,0.85), rgba(10,36,114,0.1));
+    width: 100%;
+    padding: 2rem;
+}
+.btn-auth {
+    background-color: #e8945a;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.65rem 0;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+.btn-auth:hover { background-color: #d97f3f; color: #fff; }
+.auth-link { color: #e8945a; font-weight: 600; text-decoration: none; }
+.auth-link:hover { text-decoration: underline; }
+.input-group-text { background-color: #f8f9fa; color: #0a2472; }
+
+
+.btn-nav-outline {
+    border: 1px solid #e8945a;
+    color: #e8945a;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+.btn-nav-outline:hover {
+    background-color: #e8945a;
+    color: #fff;
+}
+.btn-nav-solid {
+    background-color: #e8945a;
+    border: 1px solid #e8945a;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    transition: all 0.2s ease;
+}
+.btn-nav-solid:hover {
+    background-color: #d97f3f;
+    border-color: #d97f3f;
+    color: #fff;
+}
+
+.user-toggle {
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+.user-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.user-toggle::after { margin-left: 0.5rem; }
+
+.user-avatar {
+    width: 34px;
+    height: 34px;
+    border: 2px solid #e8945a;
+}
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    max-width: 130px;
+}
+
+.user-dropdown-menu {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    min-width: 220px;
+    margin-top: 10px;
+    padding: 0.5rem 0;
+}
+.user-dropdown-menu .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+.user-dropdown-menu .dropdown-item:hover {
+    background-color: #fdf1e7;
+    color: #d97f3f;
+}
+
+.btn-outline-cancel {
+    border-radius: 50px;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+}

@@ -24,7 +24,8 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <form action="{{ route('atraksi.store') }}" method="POST">
+                    <form action="{{ route('atraksi.store') }}" method="POST" enctype="multipart/form-data">
+
                         @csrf
                 <select name="destinasi_id" class="form-select @error('destinasi_id') is-invalid @enderror">
                      <option value="" selected disabled>-- Pilih Destinasi --</option>
@@ -90,15 +91,14 @@
                             <div class="form-text">Isi 0 kalau gratis.</div>
                         </div>
 
-                        <div class="form-floating mb-4">
-                            <input type="text" name="gambar" id="gambar"
-                                   class="form-control @error('gambar') is-invalid @enderror"
-                                   placeholder="tari-zapin.jpg"
-                                   value="{{ old('gambar') }}">
-                            <label for="gambar">Nama File Gambar</label>
-                            @error('gambar')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="mb-3">
+                            <label for="gambar" class="form-label">Nama File Gambar</label>
+                           <input type="file" name="gambar" class="form-control" accept="image/*" required>
+                                
+                         
+                            <div class="form-text">
+                                Sementara isi nama file gambar yang sudah tersedia di folder public/images.
+                            </div>
                         </div>
 
                         <div class="d-flex gap-2">

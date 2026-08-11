@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <form action="{{ route('atraksi.update', $atraksi->id) }}" method="POST">
+                    <form action="{{ route('atraksi.update', $atraksi->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                             <select name="destinasi_id" class="form-select @error('destinasi_id') is-invalid @enderror">

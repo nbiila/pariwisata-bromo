@@ -15,7 +15,7 @@ class DestinasiController extends Controller
                 $query->where('nama', 'like', '%' . $keyword . '%');
             })
             ->latest()
-            ->paginate(2);
+            ->paginate(3);
 
         return view('destinasi', compact('destinasiList', 'keyword'));
     }
@@ -40,7 +40,7 @@ class DestinasiController extends Controller
         $validated = $request->validate([
             'nama'       => 'required|string|max:255',
             'deskripsi'  => 'required|string',
-            'gambar'     => 'nullable|image|max:2048',
+            'gambar'     => 'required|image|max:2048',
             'jam_buka'   => 'required',
             'jam_tutup'  => 'required',
             'lokasi'     => 'required|string|max:255',

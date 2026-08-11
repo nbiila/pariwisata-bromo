@@ -14,56 +14,97 @@
 </head>
 <body>
 
-    <header>
-        <nav class="navbar navbar-dark navbar-expand-lg custom-navbar">
-            <div class="container navbar-inner">
-                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="Logo Wisata Bromo"
-                         style="height: 36px; width: 36px; object-fit: cover; border-radius: 50%; border: 2px solid #e8945a;">
-                    Wisata Bromo
-                </a>
+<header>
+    <nav class="navbar navbar-dark navbar-expand-lg custom-navbar">
+        <div class="container navbar-inner">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
+                <img src="{{ asset('images/logo.jpg') }}" alt="Logo Wisata Bromo"
+                     style="height: 36px; width: 36px; object-fit: cover; border-radius: 50%; border: 2px solid #e8945a;">
+                Wisata Bromo
+            </a>
 
-                <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarMenu"
-                        aria-controls="navbarMenu"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-house-door"></i> Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('destinasi') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-geo-alt"></i> Destinasi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('tentang') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-info-circle"></i> Tentang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="{{ route('kontak') }}" style="color:#c6d0dd;">
+                            <i class="bi bi-envelope"></i> Kontak
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto align-items-center">
+    @guest
+        <li class="nav-item">
+            <a href="{{ route('login') }}" class="btn btn-nav-outline btn-sm me-2">Login</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('register') }}" class="btn btn-nav-solid btn-sm">Daftar</a>
+        </li>
+    @else
+        <li class="nav-item dropdown">
+    <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle user-toggle"
+       href="#" data-bs-toggle="dropdown">
+        @php $fotoNavbar = fotoProfil(Auth::user()->id); @endphp
+        @if ($fotoNavbar)
+            <img src="{{ $fotoNavbar }}" class="rounded-circle user-avatar" style="object-fit:cover;">
+        @else
+            <span class="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center fw-bold user-avatar">
+                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+            </span>
+        @endif
+        <span class="d-none d-lg-inline ms-2 user-name">{{ Str::limit(Auth::user()->name, 15) }}</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
+        <li class="px-3 py-2">
+            <div class="fw-bold">{{ Auth::user()->name }}</div>
+            <div class="small text-muted">{{ Auth::user()->email }}</div>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" href="{{ route('profil.edit') }}">
+                <i class="bi bi-person-gear me-2"></i>Kelola Profil
+            </a>
+        </li>
+        <li>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="dropdown-item text-danger">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarMenu">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('beranda') }}" style="color:#c6d0dd;">
-                                <i class="bi bi-house-door"></i> Beranda
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('destinasi') }}" style="color:#c6d0dd;">
-                                <i class="bi bi-geo-alt"></i> Destinasi
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('tentang') }}" style="color:#c6d0dd;">
-                                <i class="bi bi-info-circle"></i> Tentang
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('kontak') }}" style="color:#c6d0dd;">
-                                <i class="bi bi-envelope"></i> Kontak
-                            </a>
-                        </li>
-                        <li class="nav-item ms-lg-auto d-flex align-items-center">
-                            <a href="{{ route('user.create') }}" class="nav-icon-circle" title="Tambah User">
-                                <i class="bi bi-person-plus-fill"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            </form>
+        </li>
+    </ul>
+</li>
+    @endguest
+</ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     @yield('content')
 

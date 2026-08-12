@@ -7,14 +7,23 @@
                      <nav class="breadcrumb-simple">
                         <span><a href="{{ route('beranda') }}">Beranda</a></span>
                         <span><a href="{{ route('tentang') }}">Tentang</a></span>
-                        <span><a href="{{ route('kontak') }}">Kontak</a></span>
-                        
-                     </nav>
+                         @if(Auth::check() && Auth::user()->role === 'admin')
+                        <span><a href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a></span>
+                         @endif
+                         </nav>
 
         <div class="text-center mb-5">
             <h2 class="fw-bold" style="color: #cdd7e2;">Destinasi Unggulan</h2>
             <p class="fw-bold" style="color: #cdd7e2;">Jelajahi beragam keindahan di Probolinggo, Jawa Timur.</p>
         </div>
+
+@if(Auth::check() && Auth::user()->role === 'admin')
+<div class="text-end mb-3">
+    <a href="{{ route('destinasi.create') }}" class="btn btn-sm" style="background-color: #0a2472; color: white;">
+        <i class="bi bi-plus-lg"></i> Tambah Destinasi
+    </a>
+</div>
+@endif
 
 <form action="{{ route('destinasi') }}" method="GET" class="mb-4">
     <div class="input-group search-bromo">

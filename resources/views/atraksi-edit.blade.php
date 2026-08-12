@@ -91,15 +91,12 @@
                             @enderror
                         </div>
 
-                        <div class="form-floating mb-4">
-                            <input type="text" name="gambar" id="gambar"
-                                   class="form-control @error('gambar') is-invalid @enderror"
-                                   placeholder="Nama File Gambar"
-                                   value="{{ old('gambar', $atraksi->gambar) }}">
-                            <label for="gambar">Nama File Gambar</label>
-                            @error('gambar')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="mb-3">
+                            <label for="gambar" class="form-label">Nama File Gambar</label>
+                            <input type="file" name="gambar" class="form-control" accept="image/*">
+                            <div class="form-text">
+                                Nama file gambar yang tersimpan di folder public/images.
+                            </div>
                         </div>
 
                         <div class="d-flex gap-2">

@@ -89,6 +89,11 @@
                 <i class="bi bi-person-gear me-2"></i>Kelola Profil
             </a>
         </li>
+@if(Auth::user()->role === 'admin')
+    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard Admin</a></li>
+@endif
+<li><hr class="dropdown-divider"></li>
+
         <li>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf

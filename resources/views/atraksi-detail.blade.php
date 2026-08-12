@@ -198,19 +198,11 @@ $perlengkapan = match ($atraksi->id) {
                         <p class="detail-panel__value">{{ $atraksi->kategori }}</p>
                     </div>
 
-                    <div class="d-flex gap-2 mt-3">
-                        <a href="{{ route('atraksi') }}" class="btn btn-outline-cancel flex-fill">
+<div class="d-flex gap-2 mt-3 detail-actions">
+                        <a href="{{ route('destinasi.detail', $atraksi->destinasi_id) }}" class="btn btn-outline-cancel flex-fill">
                             <i class="bi bi-arrow-left me-1"></i> Kembali
                         </a>
-                        <form action="{{ route('atraksi.destroy', $atraksi->id) }}" method="POST"
-                                 class="form-hapus"
-                                data-nama="{{ $atraksi->nama }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-cancel w-100">
-                                 <i class="bi bi-trash me-1"></i> Hapus Atraksi
-                                </button>
-                        </form>
+                        
                     </div>
                 </div>
             </div>

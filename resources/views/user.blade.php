@@ -12,6 +12,9 @@
               <nav class="breadcrumb-simple">
                         <span><a href="{{ route('beranda') }}">Beranda</a></span>
                         <span><a href="{{ route('user.create') }}">tambah user</a></span>
+                         @if(Auth::check() && Auth::user()->role === 'admin')
+                        <span><a href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a></span>
+                         @endif
               </nav>
 
     <div class="page-header">

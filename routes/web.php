@@ -8,6 +8,7 @@ use App\Http\Controllers\AtraksiController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,28 +26,35 @@ Route::get('/', function () {
     return view('beranda', compact('destinasiList'));
 })->name('beranda');
 
+Route::middleware(['auth', 'admin'])->group(function () {
+//Admin Dashbord
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+//Destinasi
+    Route::get('/destinasi/create', [DestinasiController::class, 'create'])->name('destinasi.create');
+    Route::post('/destinasi', [DestinasiController::class, 'store'])->name('destinasi.store');
+    Route::get('/destinasi/{id}/edit', [DestinasiController::class, 'edit'])->name('destinasi.edit');
+    Route::put('/destinasi/{id}', [DestinasiController::class, 'update'])->name('destinasi.update');
+    Route::delete('/destinasi/{id}', [DestinasiController::class, 'destroy'])->name('destinasi.destroy');
+//user
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+//Atraksi
+    Route::get('/atraksi', [AtraksiController::class, 'index'])->name('atraksi');
+    Route::get('/atraksi/create', [AtraksiController::class, 'create'])->name('atraksi.create');
+    Route::post('/atraksi', [AtraksiController::class, 'store'])->name('atraksi.store');
+    Route::get('/atraksi/{id}/edit', [AtraksiController::class, 'edit'])->name('atraksi.edit');
+    Route::put('/atraksi/{id}', [AtraksiController::class, 'update'])->name('atraksi.update');
+    Route::delete('/atraksi/{id}', [AtraksiController::class, 'destroy'])->name('atraksi.destroy');
+    
+});
+
 Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
-
-Route::get('/destinasi/create', [DestinasiController::class, 'create'])->name('destinasi.create');
-Route::post('/destinasi', [DestinasiController::class, 'store'])->name('destinasi.store');
-Route::get('/destinasi/{id}/edit', [DestinasiController::class, 'edit'])->name('destinasi.edit');
-Route::put('/destinasi/{id}', [DestinasiController::class, 'update'])->name('destinasi.update');
 Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.detail');
-Route::delete('/destinasi/{id}', [DestinasiController::class, 'destroy'])->name('destinasi.destroy');
 
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/user', [UserController::class, 'store'])->name('user.store');
-Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-
-Route::get('/atraksi', [AtraksiController::class, 'index'])->name('atraksi');
-Route::get('/atraksi/create', [AtraksiController::class, 'create'])->name('atraksi.create');
-Route::post('/atraksi', [AtraksiController::class, 'store'])->name('atraksi.store');
-Route::get('/atraksi/{id}/edit', [AtraksiController::class, 'edit'])->name('atraksi.edit');
-Route::put('/atraksi/{id}', [AtraksiController::class, 'update'])->name('atraksi.update');
-Route::delete('/atraksi/{id}', [AtraksiController::class, 'destroy'])->name('atraksi.destroy');
 
 Route::get('/atraksi/{atraksi}', [AtraksiController::class, 'show'])->name('atraksi.show');
 

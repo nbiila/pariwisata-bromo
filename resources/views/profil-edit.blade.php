@@ -9,6 +9,12 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
+        <div class="profile-topbar">
+         <a href="{{ route('beranda') }}" class="btn-back-home">
+              <i class="bi bi-arrow-left"></i> 
+         </a>
+        </div>
+
                 <div class="profile-card">
                     <div class="profile-cover">
                         <div class="profile-avatar-wrap">

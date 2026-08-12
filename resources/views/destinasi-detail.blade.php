@@ -214,14 +214,22 @@ $fasilitas = match ($destinasi->id) {
                         <i class="bi bi-cart"></i> Pesan Paket Wisata
                     </a>
 
+                    @if(Auth::check() && Auth::user()->role === 'admin')
+                    <a href="{{ route('destinasi.edit', $destinasi->id) }}" class="btn btn-outline-cancel w-100 mt-2">
+                        <i class="bi bi-pencil-square me-1"></i> Edit Destinasi
+                    </a>
+                    @endif
+
   <form action="{{ route('destinasi.destroy', $destinasi->id) }}" method="POST"
       class="form-hapus"
       data-nama="{{ $destinasi->nama }}">
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-outline-cancel w-100">
+    @if(Auth::check() && Auth::user()->role === 'admin')
+    <button type="submit" class="btn btn-outline-cancel w-100 mt-2">
         <i class="bi bi-trash me-1"></i> Hapus Destinasi
     </button>
+    @endif
 </form>
 </div>
 

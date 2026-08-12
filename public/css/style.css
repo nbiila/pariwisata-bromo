@@ -2195,3 +2195,48 @@ header {
     border-color: #ffffff;
     color: #ffffff;
 }
+.detail-actions .btn {
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+}
+.detail-actions .btn i {
+    font-size: 14px;
+}
+
+    .profile-topbar {
+    max-width: 600px;
+    margin: 0 auto 12px;
+    padding: 0 1rem;
+}
+.btn-back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #0a2472;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+.btn-back-home i {
+    font-size: 20px;   /* 👈 ini yang bikin panahnya lebih besar */
+}
+.btn-back-home:hover {
+    text-decoration: underline;
+}
+
+.btn-hapus {
+    background-color: transparent;
+    border: 1.5px solid #e24b4a;
+    color: #a32d2d;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+.btn-hapus:hover {
+    background-color: #e24b4a;
+    color: #ffffff;
+    border-color: #e24b4a;
+}

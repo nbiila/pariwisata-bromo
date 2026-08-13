@@ -29,6 +29,12 @@ $aktivitas = match ($destinasi->id) {
         'Berfoto di atas lantai kaca dengan latar jurang sedalam 83 meter di bawahnya',
         'Bersantai di cafe area shuttle sambil menikmati pemandangan perbukitan dan Gunung Bromo',
     ],
+    5 => [
+        'Menyaksikan arsitektur pura suci Suku Tengger di tengah lautan pasir',
+        'Berfoto dengan latar Gunung Batok dan lautan pasir Bromo',
+        'Berdoa/bersembahyang bagi wisatawan yang beragama Hindu',
+        'Melanjutkan trekking menuju kawah Bromo lewat ratusan anak tangga di dekat pura',
+    ],
     default => [],
 };
 
@@ -54,6 +60,12 @@ $tips = match ($destinasi->id) {
         'Wajib pakai alat pengaman yang disediakan (pelindung kaki dan body harness) saat melintasi jembatan',
         'Kalau takut ketinggian, pertimbangkan dulu karena jembatan ini membentang di atas jurang cukup dalam (83 meter)',
     ],
+    5 => [
+        'Datang pagi hari agar bisa melihat pura dengan latar cahaya matahari menembus kabut',
+        'Gunakan pakaian sopan dan jaga sikap karena ini tempat ibadah aktif, bukan sekadar objek foto',
+        'Jangan masuk ke area inti pura kecuali untuk beribadah, minta izin dulu sebelum masuk',
+        'Bawa masker debu dan air minum karena harus melintasi lautan pasir yang berangin',
+    ],
     default => [],
 };
 
@@ -62,6 +74,7 @@ $mapBbox = match ($destinasi->id) {
     2 => '112.8847,-8.0001,112.9647,-7.9201',
     3 => '112.9320,-7.9680,113.0120,-7.8880',
     4 => '112.9330,-7.9430,112.9730,-7.8830',
+    5 => '112.9305,-7.9701,112.9705,-7.9101',
     default => '',
 };
 
@@ -70,6 +83,7 @@ $mapMarker = match ($destinasi->id) {
     2 => '-7.9601,112.9247',
     3 => '-7.9280,112.9720',
     4 => '-7.9130,112.9530',
+    5 => '-7.9401,112.9505',
     default => '',
 };
 
@@ -78,6 +92,7 @@ $mapLat = match ($destinasi->id) {
     2 => '-7.9601',
     3 => '-7.9280',
     4 => '-7.9130',
+    5 => '-7.9401',
     default => '',
 };
 
@@ -86,6 +101,7 @@ $mapLon = match ($destinasi->id) {
     2 => '112.9247',
     3 => '112.9720',
     4 => '112.9530',
+    5 => '112.9505',
     default => '',
 };
 
@@ -120,6 +136,14 @@ $fasilitas = match ($destinasi->id) {
         ['icon' => 'bi bi-cup-hot', 'label' => 'Pujasera/Cafe'],
         ['icon' => 'bi bi-ticket-perforated', 'label' => 'Loket Tiket'],
     ],
+    5 => [
+        ['icon' => 'bi bi-p-circle', 'label' => 'Area Parkir'],
+        ['icon' => 'bi bi-house-door', 'label' => 'Toilet Umum'],
+        ['icon' => 'bi bi-shop', 'label' => 'Warung'],
+        ['icon' => 'bi bi-camera', 'label' => 'Spot Foto'],
+        ['icon' => 'bi bi-bag', 'label' => 'Penyewaan Kuda/Jeep'],
+        ['icon' => 'bi bi-ticket-perforated', 'label' => 'Loket Tiket'],
+    ],
     default => [
         ['icon' => 'bi bi-p-circle', 'label' => 'Area Parkir'],
         ['icon' => 'bi bi-house-door', 'label' => 'Toilet Umum'],
@@ -140,6 +164,9 @@ $fasilitas = match ($destinasi->id) {
         <span class="badge detail-hero__badge {{ $statusBuka == 'Wisata Buka' ? 'bg-success' : 'bg-secondary' }}">
             {{ $statusBuka }}
         </span>
+        @if($destinasi->kategori)
+            <span class="badge bg-secondary">{{ $destinasi->kategori->nama_kategori }}</span>
+        @endif
     </div>
 </section>
 
@@ -256,9 +283,17 @@ $fasilitas = match ($destinasi->id) {
 
 <div class="container">
     <div class="detail-atraksi mt-5">
-        <h2 class="section-title mb-4">
-            <i class="bi bi-geo-alt-fill text-primary"></i> Atraksi di Destinasi Ini
-        </h2>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <h2 class="section-title mb-0">
+                <i class="bi bi-geo-alt-fill text-primary"></i> Atraksi di Destinasi Ini
+            </h2>
+
+            @if(Auth::check() && Auth::user()->role === 'admin')
+                <a href="{{ route('atraksi.create') }}" class="btn-bromo">
+                    <i class="bi bi-plus-lg me-1"></i> Tambah Atraksi
+                </a>
+            @endif
+        </div>
 
         <div class="row g-4">
             @forelse ($destinasi->atraksi as $atraksi)
@@ -266,8 +301,8 @@ $fasilitas = match ($destinasi->id) {
                     <a href="{{ route('atraksi.show', $atraksi->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
                         <div class="atraksi-card h-100">
                             <div class="atraksi-img-wrap">
-                                <img src="{{ asset('storage/' . $atraksi->gambar) }}" 
-                                     alt="{{ $atraksi->nama }}" 
+                                <img src="{{ asset('storage/' . $atraksi->gambar) }}"
+                                     alt="{{ $atraksi->nama }}"
                                      class="atraksi-img">
                                 <span class="atraksi-badge">{{ $atraksi->kategori }}</span>
                             </div>
@@ -287,34 +322,36 @@ $fasilitas = match ($destinasi->id) {
             @endforelse
         </div>
     </div>
-</div>
 
-<div class="review-list-header">
-    <div class="eyebrow">Kata Mereka</div>
-    <h2>Ulasan Pengunjung</h2>
-</div>
+    <div class="ulasan-section mt-5 mb-5">
+        <div class="review-list-header">
+            <div class="eyebrow">Kata Mereka</div>
+            <h2>Ulasan Pengunjung</h2>
+        </div>
 
-<div class="review-grid">
-    @forelse ($destinasi->ulasan as $ulasan)
-        <div class="review-item">
-            <div class="review-item-top">
-                <div class="review-item-avatar">
-                    {{ strtoupper(substr($ulasan->user->name, 0, 1)) }}
-                </div>
-                <div class="review-item-meta">
-                    <div class="review-item-user">{{ $ulasan->user->name }}</div>
-                    <div class="review-item-stars">
-                        {{ str_repeat('★', $ulasan->rating) }}{{ str_repeat('☆', 5 - $ulasan->rating) }}
+        <div class="review-grid">
+            @forelse ($destinasi->ulasan as $ulasan)
+                <div class="review-item">
+                    <div class="review-item-top">
+                        <div class="review-item-avatar">
+                            {{ strtoupper(substr($ulasan->user->name, 0, 1)) }}
+                        </div>
+                        <div class="review-item-meta">
+                            <div class="review-item-user">{{ $ulasan->user->name }}</div>
+                            <div class="review-item-stars">
+                                {{ str_repeat('★', $ulasan->rating) }}{{ str_repeat('☆', 5 - $ulasan->rating) }}
+                            </div>
+                        </div>
                     </div>
+                    <p class="review-item-komentar">{{ $ulasan->komentar }}</p>
                 </div>
-            </div>
-            <p class="review-item-komentar">{{ $ulasan->komentar }}</p>
+            @empty
+                <div class="review-empty">
+                    Belum ada ulasan untuk destinasi ini.
+                </div>
+            @endforelse
         </div>
-    @empty
-        <div class="review-empty">
-            Belum ada ulasan untuk destinasi ini.
-        </div>
-    @endforelse
+    </div>
 </div>
 
 <a href="{{ route('ulasan.create', $destinasi->id) }}" class="btn btn-kirim mt-3">

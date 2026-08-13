@@ -124,6 +124,24 @@
                             >
                         </div>
 
+<div class="mb-3">
+    <label class="form-label">Kategori</label>
+    <select name="kategori_id" class="form-select @error('kategori_id') is-invalid @enderror">
+        <option value="" selected disabled>-- Pilih Kategori --</option>
+        @foreach ($kategoriList as $kategori)
+            <option value="{{ $kategori->id }}"
+                {{ old('kategori_id', $destinasi->kategori_id) == $kategori->id ? 'selected' : '' }}>
+                {{ $kategori->nama_kategori }}
+            </option>
+        @endforeach
+    </select>
+    <small class="text-muted">Biarkan seperti semula jika tidak ingin mengubah kategori.</small>
+    @error('kategori_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
                                 Simpan Perubahan

@@ -36,38 +36,58 @@
     </div>
 </form>
         
+<div class="destinasi-filter">
+    <a href="{{ route('destinasi', array_filter(['cari' => $keyword])) }}"
+       class="destinasi-pill {{ !$kategoriId ? 'active' : '' }}">
+        Semua
+    </a>
+    @foreach ($kategoriList as $kategori)
+        <a href="{{ route('destinasi', array_filter(['cari' => $keyword, 'kategori' => $kategori->id])) }}"
+           class="destinasi-pill {{ $kategoriId == $kategori->id ? 'active' : '' }}">
+            {{ $kategori->nama_kategori }}
+        </a>
+    @endforeach
+</div>
+
+
         <div class="row g-4">
 
             @forelse ($destinasiList as $item)
-                <?php
-                date_default_timezone_set("Asia/Jakarta");
-                $jamSekarang = date("H:i:s");
-                $status = ($jamSekarang >= $item->jam_buka && $jamSekarang < $item->jam_tutup)
-                    ? 'Wisata Buka'
-                    : 'Wisata Tutup';
-                ?>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm destinasi-card">
-                        <div class="position-relative">
-                            <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 220px; object-fit: cover;">
-                            <span class="badge position-absolute top-0 end-0 m-2 {{ $status == 'Wisata Buka' ? 'bg-success' : 'bg-secondary' }}">
-                                {{ $status }}
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold" style="color: #3f6ea1;">{{ $item->nama }}</h5>
-                            <p class="card-text fw-bold">{{ $item->deskripsi }}</p>
-                        </div>
-                        <div class="card-footer bg-white border-0 pb-3">
-                            <a href="{{ route('destinasi.detail', $item->id) }}" class="btn btn-sm" style="background-color: #e8945a; color: white;">Lihat Detail</a>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <div class="col-12 text-center">
-                    <p class="text-white">Belum tersedia Destinasi.</p>
-                </div>
-            @endforelse
+    <?php
+    date_default_timezone_set("Asia/Jakarta");
+    $jamSekarang = date("H:i:s");
+    $status = ($jamSekarang >= $item->jam_buka && $jamSekarang < $item->jam_tutup)
+        ? 'Wisata Buka'
+        : 'Wisata Tutup';
+    ?>
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm destinasi-card">
+            <div class="position-relative">
+                <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 220px; object-fit: cover;">
+                <span class="badge position-absolute top-0 end-0 m-2 {{ $status == 'Wisata Buka' ? 'bg-success' : 'bg-secondary' }}">
+                    {{ $status }}
+                </span>
+                @if($item->kategori)
+                    <span class="badge position-absolute top-0 start-0 m-2 bg-secondary">
+                        {{ $item->kategori->nama_kategori }}
+                    </span>
+                @endif
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold" style="color: #3f6ea1;">{{ $item->nama }}</h5>
+                <p class="card-text fw-bold">{{ $item->deskripsi }}</p>
+            </div>
+            <div class="card-footer bg-white border-0 pb-3">
+                <a href="{{ route('destinasi.detail', $item->id) }}" class="btn btn-sm" style="background-color: #e8945a; color: white;">Lihat Detail</a>
+            </div>
+        </div>
+    </div>
+@empty
+    <div class="col-12 text-center">
+        <p class="text-white">Belum tersedia Destinasi.</p>
+    </div>
+@endforelse
             <div class="d-flex justify-content-center mt-4">
     {{ $destinasiList->appends(['cari' => $keyword])->links('pagination::bootstrap-5') }}
             </div>

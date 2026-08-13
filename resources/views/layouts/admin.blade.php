@@ -135,7 +135,7 @@
 
     <div class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <div class="icon-wrap"><i class="bi bi-mountain"></i></div>
+            <div class="icon-wrap"><i class="bi bi-triangle-fill"></i></div>
             <div>
                 <h5>Wisata Bromo</h5>
                 <small>Panel Admin</small>
@@ -154,6 +154,10 @@
             <a href="{{ route('atraksi') }}" class="{{ request()->routeIs('atraksi*') ? 'active' : '' }}">
                 <i class="bi bi-signpost-split"></i> Kelola Atraksi
             </a>
+                <a href="{{ route('kategori') }}" class="{{ request()->routeIs('kategori*') ? 'active' : '' }}">
+                     <i class="bi bi-tags"></i> Kelola Kategori
+                 </a>
+
 
             <div class="menu-label">Pengguna</div>
             <a href="{{ route('user') }}" class="{{ request()->routeIs('user*') ? 'active' : '' }}">

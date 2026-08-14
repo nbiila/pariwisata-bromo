@@ -21,7 +21,7 @@ public function index(Request $request)
         })
         ->with('kategori')
         ->latest()
-        ->paginate(2)
+        ->paginate(3)
         ->appends($request->query());
  
     $kategoriList = Kategori::all();
@@ -60,7 +60,6 @@ public function create()
         ]);
 
         $validated['gambar'] = $request->file('gambar')->store('destinasi', 'public');
-         Destinasi::create($validated);
         $destinasi = Destinasi::create($validated);
 
         return redirect()->route('destinasi.detail', $destinasi->id)

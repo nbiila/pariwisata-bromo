@@ -49,9 +49,24 @@ $NamaDaerah = "Bromo";
                 </div>
             </div>
 
+                @if (session('success'))
+             <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+             </ul>
+         </div>
+        @endif
+
+
             <!-- Panel Form -->
             <div class="pos-kontak__panel pos-kontak__panel--form">
-                <form>
+            <form action="{{ route('kontak.send') }}" method="POST">
+                  @csrf
                     <div class="pos-kontak__field">
                         <label for="nama">Nama</label>
                         <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda">

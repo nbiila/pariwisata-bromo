@@ -10,6 +10,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\KulinerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,8 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/kuliner', [KulinerController::class, 'index'])->name('kuliner.index');
+
 
 // Route {id} generik selalu PALING BAWAH:
 Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.detail');
@@ -89,7 +93,7 @@ Route::get('/tentang', function () {
     return view('tentang');
 })->name('tentang');
 
-Route::get('/kontak', function () {
-    return view('kontak');
-})->name('kontak');
+Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+Route::post('/kontak', [KontakController::class, 'send'])->name('kontak.send');
+
 

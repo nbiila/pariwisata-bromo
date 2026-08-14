@@ -40,7 +40,7 @@ class ProfilController extends Controller
             $request->file('foto')->storeAs('profil', "{$user->id}.{$newExt}", 'public');
         }
 
-        $user->save();
+        // $user->save();
 
         return back()->with('success', 'Profil berhasil diperbarui.');
     }

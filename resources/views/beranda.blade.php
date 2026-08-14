@@ -114,7 +114,20 @@ if ($jamsekarang < 10) {
 
 <section class="kontak">
     <h2>Hubungi Kami</h2>
-    <form>
+    @if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+    <form action="{{ route('kontak.send') }}" method="POST">
+        @csrf
         <div>
             <label for="nama">Nama</label>
             <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda">

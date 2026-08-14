@@ -35,6 +35,28 @@ $aktivitas = match ($destinasi->id) {
         'Berdoa/bersembahyang bagi wisatawan yang beragama Hindu',
         'Melanjutkan trekking menuju kawah Bromo lewat ratusan anak tangga di dekat pura',
     ],
+    6 => [
+        'Berkendara jeep menyusuri hamparan lautan pasir dengan latar Gunung Bromo dan Batok',
+        'Berfoto di spot ikonik dengan komposisi bukit pasir dan pegunungan Tengger, terutama saat pagi hari',
+        'Berkuda menyusuri lautan pasir sebagai alternatif jeep',
+        'Merasakan fenomena "bisikan pasir" saat angin kencang menyapu permukaan pasir',
+        'Melanjutkan perjalanan menuju Pura Luhur Poten atau kawah Bromo, karena lokasinya berdekatan',
+    ],
+    7 => [
+        'Menjelajahi goa alami sambil belajar sejarah dan nilai spiritualnya bagi Suku Tengger',
+        'Melihat mata air jernih di dalam goa yang dipakai warga untuk membersihkan diri',
+        'Mengamati patung yang menjadi tempat ritual masyarakat Tengger',
+        'Menikmati panorama kaldera Bromo dari Bukit Widodaren dengan sudut pandang berbeda dari Penanjakan',
+        'Trekking ringan menyusuri jalur menanjak menuju goa',
+    ],
+    8 => [
+        'Menyaksikan kehidupan masyarakat Suku Tengger di desa terakhir sebelum kawasan lautan pasir Bromo',
+        'Berburu spot foto dengan latar Gunung Bromo dari gapura ikonik Cemoro Lawang',
+        'Menyewa jeep hardtop bersama warga lokal untuk menjelajah kawasan Bromo',
+        'Mengunjungi rumah-rumah tradisional khas Tengger di sepanjang jalan desa',
+        'Mencicipi kuliner khas seperti jagung bakar, wedang ronde, dan nasi aron Tengger',
+        'Bermalam di homestay warga untuk merasakan suasana pagi dingin pegunungan sebelum sunrise',
+    ],
     default => [],
 };
 
@@ -66,6 +88,25 @@ $tips = match ($destinasi->id) {
         'Jangan masuk ke area inti pura kecuali untuk beribadah, minta izin dulu sebelum masuk',
         'Bawa masker debu dan air minum karena harus melintasi lautan pasir yang berangin',
     ],
+    6 => [
+        'Datang pagi hari untuk cahaya foto terbaik sekaligus suhu yang belum terlalu terik',
+        'Gunakan masker dan kacamata pelindung karena pasir mudah beterbangan saat angin kencang',
+        'Akses hanya bisa lewat jeep hardtop dari Cemoro Lawang, Tosari/Wonokitri, atau Ngadas — mobil pribadi/city car tidak disarankan menembus medan pasir',
+        'Bawa air minum yang cukup, area terbuka dan minim tempat berteduh',
+    ],
+     7 => [
+        'Wajib didampingi pemandu lokal karena jalur menanjak dan berliku, kurang cocok bagi pemula',
+        'Bawa bekal dan air minum yang cukup karena perjalanan cukup menguras tenaga',
+        'Gunakan alas kaki trekking yang nyaman dan anti-slip',
+        'Jaga sikap dan hormati nilai sakral tempat ini, karena masih digunakan untuk ritual oleh warga Tengger',
+    ],
+    8 => [
+        'Bawa jaket tebal karena suhu malam dan dini hari bisa di bawah 10°C',
+        'Booking homestay/penginapan jauh-jauh hari, terutama saat musim liburan',
+        'Nego harga sewa jeep di titik ini sebelum berangkat ke Bromo, karena Cemoro Lawang jadi salah satu pos utama',
+        'Hormati adat dan budaya warga Tengger, terutama saat ada upacara adat berlangsung',
+        'Datang sore hari agar sempat menikmati suasana desa sebelum berangkat dini hari mengejar sunrise',
+    ],
     default => [],
 };
 
@@ -75,6 +116,9 @@ $mapBbox = match ($destinasi->id) {
     3 => '112.9320,-7.9680,113.0120,-7.8880',
     4 => '112.9330,-7.9430,112.9730,-7.8830',
     5 => '112.9305,-7.9701,112.9705,-7.9101',
+    6 => '112.9450,-7.9550,113.0050,-7.8950',
+    7 => '112.9450,-7.9350,112.9850,-7.8750',
+    8 => '112.9350,-7.9450,112.9750,-7.8850',
     default => '',
 };
 
@@ -84,6 +128,9 @@ $mapMarker = match ($destinasi->id) {
     3 => '-7.9280,112.9720',
     4 => '-7.9130,112.9530',
     5 => '-7.9401,112.9505',
+    6 => '-7.9250,112.9750',
+    7 => '-7.9050,112.9650',
+    8 => '-7.9150,112.9550',
     default => '',
 };
 
@@ -93,6 +140,9 @@ $mapLat = match ($destinasi->id) {
     3 => '-7.9280',
     4 => '-7.9130',
     5 => '-7.9401',
+    6 => '-7.9250',
+    7 => '-7.9050',
+    8 => '-7.9150',
     default => '',
 };
 
@@ -102,6 +152,9 @@ $mapLon = match ($destinasi->id) {
     3 => '112.9720',
     4 => '112.9530',
     5 => '112.9505',
+    6 => '112.9750',
+    7 => '112.9650',
+    8 => '112.9550',
     default => '',
 };
 
@@ -143,6 +196,26 @@ $fasilitas = match ($destinasi->id) {
         ['icon' => 'bi bi-camera', 'label' => 'Spot Foto'],
         ['icon' => 'bi bi-bag', 'label' => 'Penyewaan Kuda/Jeep'],
         ['icon' => 'bi bi-ticket-perforated', 'label' => 'Loket Tiket'],
+    ],
+    6 => [
+        ['icon' => 'bi bi-p-circle', 'label' => 'Area Parkir/Transit Jeep'],
+        ['icon' => 'bi bi-truck', 'label' => 'Penyewaan Jeep'],
+        ['icon' => 'bi bi-bag', 'label' => 'Penyewaan Kuda'],
+        ['icon' => 'bi bi-camera', 'label' => 'Spot Foto'],
+        ['icon' => 'bi bi-signpost', 'label' => 'Jasa Pemandu'],
+    ],
+     7 => [
+        ['icon' => 'bi bi-droplet', 'label' => 'Mata Air Alami'],
+        ['icon' => 'bi bi-signpost', 'label' => 'Jasa Pemandu'],
+        ['icon' => 'bi bi-camera', 'label' => 'Spot Foto'],
+     ],
+      8 => [
+        ['icon' => 'bi bi-p-circle', 'label' => 'Area Parkir'],
+        ['icon' => 'bi bi-house-door', 'label' => 'Toilet Umum'],
+        ['icon' => 'bi bi-house', 'label' => 'Homestay'],
+        ['icon' => 'bi bi-shop', 'label' => 'Warung Makan'],
+        ['icon' => 'bi bi-truck', 'label' => 'Penyewaan Jeep'],
+        ['icon' => 'bi bi-building', 'label' => 'Mushola'],
     ],
     default => [
         ['icon' => 'bi bi-p-circle', 'label' => 'Area Parkir'],
@@ -298,7 +371,11 @@ $fasilitas = match ($destinasi->id) {
         <div class="row g-4">
             @forelse ($destinasi->atraksi as $atraksi)
                 <div class="col-md-4">
-                    <a href="{{ route('atraksi.show', $atraksi->id) }}" class="atraksi-card-link text-decoration-none text-dark d-block h-100">
+                    <div class="atraksi-card-link atraksi-card-trigger text-decoration-none text-dark d-block h-100"
+                         role="button"
+                         tabindex="0"
+                         data-bs-toggle="modal"
+                         data-bs-target="#atraksiModal{{ $atraksi->id }}">
                         <div class="atraksi-card h-100">
                             <div class="atraksi-img-wrap">
                                 <img src="{{ asset('storage/' . $atraksi->gambar) }}"
@@ -313,7 +390,7 @@ $fasilitas = match ($destinasi->id) {
                                 @endif
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             @empty
                 <div class="col-12">
@@ -321,6 +398,55 @@ $fasilitas = match ($destinasi->id) {
                 </div>
             @endforelse
         </div>
+
+        {{-- Popup card (modal) tiap atraksi, dipicu dari klik kartu di atas --}}
+       @foreach ($destinasi->atraksi as $atraksi)
+    @php
+        $ikonKategori = match (strtolower($atraksi->kategori)) {
+            'budaya' => 'bi-flower1',
+            'alam' => 'bi-tree',
+            'petualangan' => 'bi-compass',
+            'kuliner' => 'bi-cup-hot',
+            default => 'bi-stars',
+        };
+    @endphp
+
+    <div class="modal fade" id="atraksiModal{{ $atraksi->id }}" tabindex="-1"
+         aria-labelledby="atraksiModalLabel{{ $atraksi->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content atraksi-modal-content">
+
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                        data-bs-dismiss="modal" aria-label="Close"
+                        style="z-index: 10; filter: invert(1);"></button>
+
+                <div class="atraksi-modal-media">
+                    <img src="{{ asset('storage/' . $atraksi->gambar) }}"
+                         alt="{{ $atraksi->nama }}"
+                         class="atraksi-modal-img">
+                    <div class="atraksi-modal-gradient"></div>
+
+                    <span class="atraksi-modal-badge">
+                        <i class="bi {{ $ikonKategori }}"></i> {{ $atraksi->kategori }}
+                    </span>
+
+                    <h5 class="atraksi-modal-title" id="atraksiModalLabel{{ $atraksi->id }}">
+                        {{ $atraksi->nama }}
+                    </h5>
+                </div>
+
+                <div class="modal-body">
+                    <p class="atraksi-modal-desc mb-3">{{ $atraksi->deskripsi }}</p>
+
+                    <div class="atraksi-modal-meta">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        Bagian dari destinasi <strong>{{ $destinasi->nama }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
     </div>
 
     <div class="ulasan-section mt-5 mb-5">
@@ -361,4 +487,7 @@ $fasilitas = match ($destinasi->id) {
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/atraksi.css') }}">
+    <style>
+        .atraksi-card-trigger { cursor: pointer; }
+    </style>
 @endpush

@@ -73,6 +73,10 @@
                                     <input type="radio" name="kategori" id="kategori-kuliner" value="Kuliner" {{ old('kategori') == 'Kuliner' ? 'checked' : '' }}>
                                     <label for="kategori-kuliner"><i class="bi bi-cup-hot"></i> Kuliner</label>
                                 </div>
+                                <div class="role-option">
+                                    <input type="radio" name="kategori" id="kategori-sejarah" value="Sejarah" {{ old('kategori') == 'Sejarah' ? 'checked' : '' }}>
+                                    <label for="kategori-sejarah"><i class="bi bi-bank"></i> Sejarah</label>
+                                    </div>
                             </div>
                             @error('kategori')
                                 <div class="text-danger small mt-1">{{ $message }}</div>

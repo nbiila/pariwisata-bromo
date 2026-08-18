@@ -52,7 +52,7 @@ $NamaDaerah = "Bromo";
                 @if (session('success'))
              <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
         <ul class="mb-0">
             @foreach ($errors->all() as $error)
@@ -60,28 +60,42 @@ $NamaDaerah = "Bromo";
             @endforeach
              </ul>
          </div>
-        @endif
+        @endif --}}
 
 
             <!-- Panel Form -->
             <div class="pos-kontak__panel pos-kontak__panel--form">
-            <form action="{{ route('kontak.send') }}" method="POST">
-                  @csrf
-                    <div class="pos-kontak__field">
-                        <label for="nama">Nama</label>
-                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda">
-                    </div>
+    <form action="{{ route('kontak.send') }}" method="POST">
+        @csrf
+        <div class="pos-kontak__field">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" 
+                   class="@error('nama') is-invalid @enderror"
+                   value="{{ old('nama') }}" placeholder="Masukkan nama Anda">
+            @error('nama')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-                    <div class="pos-kontak__field">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda">
-                    </div>
+        <div class="pos-kontak__field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" 
+                   class="@error('email') is-invalid @enderror"
+                   value="{{ old('email') }}" placeholder="Masukkan email Anda">
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-                    <div class="pos-kontak__field">
-                        <label for="pesan">Pesan</label>
-                        <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis pesan Anda"></textarea>
-                    </div>
-
+        <div class="pos-kontak__field">
+            <label for="pesan">Pesan</label>
+            <textarea id="pesan" name="pesan" rows="4" 
+                      class="@error('pesan') is-invalid @enderror"
+                      placeholder="Tulis pesan Anda">{{ old('pesan') }}</textarea>
+            @error('pesan')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
                     <button type="submit" class="pos-kontak__submit">Kirim Pesan</button>
                 </form>
             </div>

@@ -2426,3 +2426,33 @@ header {
     padding-top: 0.75rem;
     border-top: 1px solid #eef1f5;
 }
+
+.review-card-body .form-select,
+.review-card-body .form-control {
+    border-radius: 12px;
+    border: 1px solid #dde4ef;
+    padding: 12px 16px;
+    color: #0a2472;
+    transition: all 0.2s ease;
+}
+
+.review-card-body .form-select option {
+    color: #0a2472;
+    background-color: #fff;
+}
+.review-page .breadcrumb-simple span a,
+.review-page .breadcrumb-simple a {
+    color: var(--bromo-navy);
+}
+
+.review-page .breadcrumb-simple a:hover {
+    color: var(--bromo-amber);
+}
+
+.review-page .breadcrumb-simple span:last-child {
+    color: var(--bromo-amber-dark);
+}
+
+.review-page .breadcrumb-simple span:not(:last-child)::after {
+    color: #A9B2BC;
+}

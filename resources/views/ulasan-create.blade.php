@@ -10,13 +10,11 @@
 <div class="review-page">
     <div class="container pt-4">
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-light-bg">
-                <li class="breadcrumb-item"><span><a href="{{ route('beranda') }}">Beranda</a></span></li>
-                <li class="breadcrumb-item"><span><a href="{{ route('destinasi.detail', $destinasi->id) }}">{{ $destinasi->nama }}</a></span></li>
-                <li class="breadcrumb-item active" aria-current="page"><span>Tulis Ulasan</span></li>
-            </ol>
-        </nav>
+<nav class="breadcrumb-simple">
+    <span><a href="{{ route('beranda') }}">Beranda</a></span>
+    <span><a href="{{ route('destinasi.detail', $destinasi->id) }}">{{ $destinasi->nama }}</a></span>
+    <span>Tulis Ulasan</span>
+</nav>
 
         <div class="row justify-content-center mt-4">
             <div class="col-lg-7">
@@ -32,12 +30,14 @@
                             @csrf
                             <input type="hidden" name="destinasi_id" value="{{ $destinasi->id }}">
 
-                            <div class="mb-4">
-                                <label class="form-label">Menulis sebagai</label>
-                                @error('user_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+ <div class="mb-4 d-flex align-items-center gap-2 flex-wrap">
+    <label class="form-label mb-0">Menulis sebagai</label>
+    <span class="menulis-sebagai-badge">{{ auth()->user()->name }}</span>
+    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+    @error('user_id')
+        <div class="invalid-feedback d-block">{{ $message }}</div>
+    @enderror
+</div>
 
                             <div class="mb-4">
                                 <label class="form-label d-block">Rating</label>

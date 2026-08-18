@@ -451,7 +451,6 @@ $fasilitas = match ($destinasi->id) {
 
     <div class="ulasan-section mt-5 mb-5">
         <div class="review-list-header">
-            <div class="eyebrow">Kata Mereka</div>
             <h2>Ulasan Pengunjung</h2>
         </div>
 

@@ -54,11 +54,6 @@
                             <i class="bi bi-envelope"></i> Kontak
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('kuliner.index') ? 'active' : '' }}" href="{{ route('kuliner.index') }}">
-                            Kuliner
-                        </a>
-                    </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto align-items-center">
